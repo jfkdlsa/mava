@@ -4,9 +4,9 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -19,7 +19,8 @@ class DefaultController extends Controller
 //        return $this->render( 'default/index.html.twig', [
 //            'base_dir' => realpath( $this->getParameter( 'kernel.root_dir' ) . '/..' ) . DIRECTORY_SEPARATOR,
 //        ] );
-        return new Response("Hello World");
+        $response = new Response( "Hello World" );
+        return $response;
     }
 
     /**
