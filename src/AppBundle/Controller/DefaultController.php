@@ -19,7 +19,7 @@ class DefaultController extends Controller
 //        return $this->render( 'default/index.html.twig', [
 //            'base_dir' => realpath( $this->getParameter( 'kernel.root_dir' ) . '/..' ) . DIRECTORY_SEPARATOR,
 //        ] );
-        $response = new Response( "Hello World" );
+        $response = new Response( "<html><body>Hello World</body></html>" );
         return $response;
     }
 
