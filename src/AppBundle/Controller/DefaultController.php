@@ -19,20 +19,7 @@ class DefaultController extends Controller
         $response = $this->render( 'default/index.html.twig', [
             'base_dir' => realpath( $this->getParameter( 'kernel.root_dir' ) . '/..' ) . DIRECTORY_SEPARATOR,
         ] );
-        $resptxt = <<<EOBLA
-<!DOCTYPE html>
-<html>
-    <body>
-        <div id="container">
-                <h1><span>Welcomee to</span> Symfony 3.2.4 mava</h1>
-
-
-        </div>
-            </body>
-</html>
-EOBLA;
-
-        $resptxt = "<html>\n<head/>\n<body>\n<p>Hello World</p>\n</body>\n</html>";
+        $resptxt = "<html>\n<head/>\n<body>\n<p>Hello, World</p>\n</body>\n</html>";
         $response = new Response(
             $resptxt,
             Response::HTTP_OK,
