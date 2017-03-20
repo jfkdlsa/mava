@@ -16,10 +16,28 @@ class DefaultController extends Controller
     public function indexAction( Request $request )
     {
         // replace this example code with whatever you need
-//        return $this->render( 'default/index.html.twig', [
-//            'base_dir' => realpath( $this->getParameter( 'kernel.root_dir' ) . '/..' ) . DIRECTORY_SEPARATOR,
-//        ] );
-        $response = new Response( "<!DOCTYPE html><html><body>Hello World</body></html>" );
+        $response = $this->render( 'default/index.html.twig', [
+            'base_dir' => realpath( $this->getParameter( 'kernel.root_dir' ) . '/..' ) . DIRECTORY_SEPARATOR,
+        ] );
+        $resptxt = <<<EOBLA
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="container">
+                <h1><span>Welcomee to</span> Symfony 3.2.4 mava</h1>
+
+
+        </div>
+            </body>
+</html>
+EOBLA;
+
+        $resptxt = "<html>\n<head/>\n<body>\n<p>Hello World</p>\n</body>\n</html>";
+        $response = new Response(
+            $resptxt,
+            Response::HTTP_OK,
+            ['content-type' => 'text/html']
+        );
         return $response;
     }
 

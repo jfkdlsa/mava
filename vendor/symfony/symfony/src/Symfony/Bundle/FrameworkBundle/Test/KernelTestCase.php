@@ -15,12 +15,19 @@ use Symfony\Component\DependencyInjection\ResettableContainerInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+// Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
+if (class_exists('\PHPUnit\Framework\TestCase', true)) {
+    class KernelTestCaseAncestor extends \PHPUnit\Framework\TestCase {}
+} else {
+    class KernelTestCaseAncestor extends \PHPUnit_Framework_TestCase {}
+}
+
 /**
  * KernelTestCase is the base class for tests needing a Kernel.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-abstract class KernelTestCase extends \PHPUnit_Framework_TestCase
+abstract class KernelTestCase extends KernelTestCaseAncestor
 {
     protected static $class;
 
