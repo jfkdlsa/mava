@@ -6,7 +6,9 @@
   <property name="phploc" value="phploc"/>
   <property name="phpmd" value="phpmd"/>
   <property name="phpunit" value="phpunit"/>
-  <target name="full-build" depends="prepare,static-analysis,phpunit,-check-failure" description="Performs static analysis, runs the tests, and generates project documentation"/>
+  <property name="vendors" value="vendors"/>
+  <property name="parameters" value="parameters"/>
+  <target name="full-build" depends="prepare,vendors,parameters,static-analysis,phpunit,-check-failure" description="Performs static analysis, runs the tests, and generates project documentation"/>
   <target name="full-build-parallel" depends="prepare,static-analysis-parallel,phpunit,-check-failure" description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/>
   <target name="quick-build" depends="prepare,lint,phpunit-no-coverage" description="Performs a lint check and runs the tests (without generating code coverage reports)"/>
   <target name="static-analysis" depends="lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci" description="Performs static analysis"/>
@@ -159,5 +161,16 @@
         </not>
       </condition>
     </fail>
+  </target>
+  <target name="vendors" description="Update vendors">
+    <exec executable="composer" failonerror="true">
+      <arg value="update" />
+    </exec>
+  </target>
+  <target name="parameters" description="Copy parameters">
+    <exec executable="cp" failonerror="true">
+      <arg path="app/config/parameters.yml.dist" />
+      <arg path="app/config/parameters.yml" />
+    </exec>
   </target>
 </project>
